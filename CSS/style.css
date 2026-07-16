@@ -1,0 +1,419 @@
+/* style.css */
+/* ==========================================
+   1. RESET & BASE VARIABLES
+   ========================================== */
+:root {
+    --bg-dark: #161618;
+    --card-bg: rgba(178, 74, 74, 0.03);
+    --border-color: rgba(231, 21, 21, 0.08);
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --primary: #6366f1;
+    --primary-glow: rgba(99, 102, 241, 0.3);
+    --accent: #3b82f6;
+    --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Hidden for custom dynamic cursor */
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. CUSTOM UTILITIES & MOUSE
+   ========================================== */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.custom-cursor.hovered {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-glow);
+    border-color: var(--accent);
+}
+
+.section-padding {
+    padding: 100px 8%;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #ec4899 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   3. NAVIGATION BAR (Blurs on Scroll)
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s ease;
+    background-color: rgba(26, 26, 151, 0.932);
+}
+
+.navbar.scrolled {
+    padding: 12px 8%;
+    background: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+.nav-logo span { color: var(--primary); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-main);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.cta-btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--text-main);
+    font-weight: 600;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.cta-btn:hover::before {
+    left: 100%;
+}
+
+.cta-btn:hover {
+    background: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.menu-toggle { display: none; color: white; font-size: 1.5rem; }
+
+/* ==========================================
+   4. HERO SECTION (Micro-animations)
+   ========================================== */
+.hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    padding: 0 8%;
+    position: relative;
+}
+
+.hero-bg-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+    top: 10%;
+    left: -10%;
+    z-index: -1;
+    filter: blur(40px);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+.btn-primary i {
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+.btn-primary:hover i {
+    transform: translateX(5px);
+}
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px var(--primary-glow);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: white;
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Floating Stacks Visualization */
+.hero-visual {
+    position: relative;
+    height: 520px;
+}
+
+.floating-card {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 16px;
+    width: 260px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: border-color 0.3s, transform 0.1s ease-out;
+}
+
+.floating-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.floating-card h3 { margin-bottom: 8px; font-size: 1.2rem; }
+.floating-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+.floating-card:hover {
+    border-color: var(--primary);
+}
+
+/* Absolute coordinates + staggered CSS float animations */
+.c1 { top: 10%; left: 10%; animation: floatY 6s ease-in-out infinite; }
+.c2 { top: 45%; left: 40%; animation: floatY 8s ease-in-out infinite 1s; }
+.c3 { top: 20%; right: -5%; animation: floatY 7s ease-in-out infinite 0.5s; }
+.c4 { top: 62%; left: 16%; animation: floatY 7.4s ease-in-out infinite 1.2s; z-index: 2; }
+.c5 { top: 62%; right: 8%; animation: floatY 6.8s ease-in-out infinite 1.4s; z-index: 2; }
+
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* ==========================================
+   5. ACADEMICS & SCROLL ANIMATIONS
+   ========================================== */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.section-header p { color: var(--text-muted); }
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.academic-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px 30px;
+    border-radius: 14px;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.academic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(99, 102, 241, 0.06), transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 25px;
+}
+
+.academic-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+.academic-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; }
+
+.learn-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
+}
+.learn-more i { transition: transform 0.3s; }
+.academic-card:hover .learn-more i { transform: translateX(4px); }
+
+.academic-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* ==========================================
+   6. STATS COUNTER SECTION
+   ========================================== */
+.stats-section {
+    background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.02), transparent);
+}
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: center;
+}
+.stat-box h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+.stat-box p {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
+
+/* ==========================================
+   7. RUNTIME INTERSECTION JS CLASSES
+   ========================================== */
+.fade-up-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Invisible state before scroll observation handles it */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media(max-width: 992px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
+    .hero-content p { margin: 0 auto 40px auto; }
+    .hero-btns { justify-content: center; }
+    .hero-visual { display: none; }
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+}
