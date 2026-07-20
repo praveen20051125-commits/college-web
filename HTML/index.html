@@ -1,124 +1,413 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus University | Innovation & Excellence</title>
-    <link rel="stylesheet" href="../CSS/style.css">
-    <!-- Font Awesome for clean UI icons -->
+    <title>T.J.S. Engineering College | Peruvoyal, Chennai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
 
-    <!-- Smooth Custom Custom Cursor -->
-    <div class="custom-cursor"></div>
+    <!-- 3D Spatial Canvas Viewport Layer -->
+    <canvas id="spatial-canvas"></canvas>
+    <div class="cursor-light" id="cursor-light"></div>
+
+    <!-- Top Announcement Ticker -->
+    <div class="announcement-ticker">
+        <div class="ticker-wrap">
+            <span class="ticker-item"><i class="fa-solid fa-bullhorn"></i> Admissions Open for 2026 - 2027 | Counseling Code: 1442</span>
+            <span class="ticker-item"><i class="fa-solid fa-star"></i> NAAC Accredited & ISO 9001:2015 Certified Campus</span>
+        </div>
+    </div>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-logo">NAAC <span>A</span></div>
-        <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#academics">Academics</a></li>
-            <li><a href="#campus">Campus Life</a></li>
-            <li><a href="#stats">Impact</a></li>
-            <li><a href="#contact">Contact</a></li>
-             <li><a href="#about">About</a></li>
-        </ul>
-        <button class="cta-btn text-reveal">Apply Now</button>
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    <nav class="premium-nav">
+        <div class="nav-wrapper">
+            <div class="logo-cluster">
+                <img src="../img/trust-logo.png" alt="TJS Engineering College Logo" class="brand-logo">
+            </div>
+            <ul class="nav-map">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#departments">Academics</a></li>
+                <li><a href="#facilities">Facilities</a></li>
+                <li><a href="#placements">Placements</a></li>
+                <li><a href="#admissions">Admissions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#admissions" class="action-trigger mini-pill">Apply Now</a>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg-glow"></div>
-        <div class="hero-content">
-            <h1 class="fade-up-text">T J S <br><span class="gradient-text"> ENGINEERING COLLEGE</span></h1>
-            <p class="fade-up-text delay-1">Where cutting-edge technology meets world-class academic excellence. Step into the future of education.</p>
-            <div class="hero-btns fade-up-text delay-2">
-                <button class="btn-primary">Explore Programs <i class="fas fa-arrow-right"></i></button>
-                <button class="btn-secondary">Virtual Tour</button>
-            </div>
-        </div>
-        
-        <!-- Interactive Floating Cards Stack -->
-        <div class="hero-visual">
-            <div class="floating-card c1">
-                <i class="fas fa-microchip"></i>
-                <h3>AI & Robotics</h3>
-                <p>Next-gen research labs.</p>
-            </div>
-            <div class="floating-card c2">
-                <i class="fas fa-globe-americas"></i>
-                <h3>Global Campus</h3>
-                <p>120+ Partner Universities.</p>
-            </div>
-            <div class="floating-card c3">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>90% Placement</h3>
-                <p>Top Fortune 500 recruiters.</p>
-            </div>
-            <div class="floating-card c4">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>two placement center</h3>
-                <p>2 company are tipped.</p>
-            </div>
-            <div class="floating-card c5">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>200+ staf</h3>
-                <p>excellent Teaching experiance.</p>
+    <!-- 1. Hero Section -->
+    <section id="hero" class="hero-viewport">
+        <div class="hero-image-backdrop" style="background-image: url('../img/campus-day.avif');"></div>
+        <div class="hero-frame">
+            <span class="badge-reveal">TJS Educational Trust</span>
+            <h1 class="headline-hero">Building Future Engineers</h1>
+            <p class="tagline-hero">Through Innovation, Excellence, and Values</p>
+            <div class="action-cluster">
+                <a href="#admissions" class="action-trigger primary-pill">Apply Online</a>
+                <a href="#facilities" class="action-trigger secondary-pill"><i class="fa-solid fa-compass"></i> Virtual Campus Tour</a>
             </div>
         </div>
     </section>
 
-    <!-- Academics Section (Scroll-triggered cards) -->
-    <section id="academics" class="academics section-padding">
-        <div class="section-header scroll-reveal">
-            <h2>Fields of Study</h2>
-            <p>Tailored programs designed to equip you for tomorrow's challenges.</p>
-        </div>
-        
-        <div class="card-grid">
-            <div class="academic-card scroll-reveal">
-                <div class="card-icon"><i class="fas fa-code"></i></div>
-                <h3>Computer Science</h3>
-                <p>Deep dive into algorithms, cybersecurity, infrastructure, and full-stack software architectures.</p>
-                <a href="#" class="learn-more">Read Syllabus <i class="fas fa-chevron-right"></i></a>
-            </div>
-            <div class="academic-card scroll-reveal">
-                <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
-                <h3>Business Analytics</h3>
-                <p>Master data-driven decision making, corporate strategy, and disruptive modern market economics.</p>
-                <a href="#" class="learn-more">Read Syllabus <i class="fas fa-chevron-right"></i></a>
-            </div>
-            <div class="academic-card scroll-reveal">
-                <div class="card-icon"><i class="fas fa-flask"></i></div>
-                <h3>Bio-Engineering</h3>
-                <p>Bridge biology and hardware technology to create life-altering prosthetic systems and medical tools.</p>
-                <a href="#" class="learn-more">Read Syllabus <i class="fas fa-chevron-right"></i></a>
+    <!-- 2. About College -->
+    <section id="about" class="section-viewport">
+        <div class="glass-container">
+            <div class="glass-sheet main-about">
+                <span class="accent-tag">Established 2009</span>
+                <h2>Managed by T.J. Sivananda Mudaliar Educational Trust</h2>
+                <p class="location-string"><i class="fa-solid fa-map-pin"></i> Located in Peruvoyal, Gummidipoondi, Thiruvallur District, about 30 km from Chennai on NH-16 (formerly NH-5).</p>
+                
+                <div class="spec-row-grid">
+                    <div class="spec-tile"><i class="fa-solid fa-circle-check"></i> AICTE Approved</div>
+                    <div class="spec-tile"><i class="fa-solid fa-graduation-cap"></i> Affiliated to Anna University</div>
+                    <div class="spec-tile"><i class="fa-solid fa-award"></i> NAAC Accredited</div>
+                    <div class="spec-tile"><i class="fa-solid fa-certificate"></i> ISO 9001:2015 Certified</div>
+                </div>
+                <p class="description-text">Boasting a lush green campus with modern infrastructure designed to foster technical innovation, research brilliance, and robust human values among engineering students.</p>
             </div>
         </div>
     </section>
 
-    <!-- Animated Counters Section -->
-    <section id="stats" class="stats-section section-padding">
-        <div class="stats-container">
-            <div class="stat-box scroll-reveal">
-                <h2 class="counter" data-target="15000">0</h2>
-                <p>Active Students</p>
+    <!-- 3. Vision & Mission -->
+    <section id="vision-mission" class="section-viewport">
+        <div class="glass-container grid-dual">
+            <div class="glass-sheet card-interactive tilt-target">
+                <h3><i class="fa-solid fa-eye accent-gold"></i> Vision</h3>
+                <p class="vision-text">To empower youth through quality education founded on strong values.</p>
             </div>
-            <div class="stat-box scroll-reveal">
-                <h2 class="counter" data-target="240">0</h2>
-                <p>Top Tier Professors</p>
-            </div>
-            <div class="stat-box scroll-reveal">
-                <h2 class="counter" data-target="85">0</h2>
-                <p>M+ Research Funding</p>
+            <div class="glass-sheet card-interactive tilt-target">
+                <h3><i class="fa-solid fa-bullseye accent-crimson"></i> Mission</h3>
+                <ul class="clean-list">
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Delivering holistic and student-centric education paradigms.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Producing industry-ready graduates with elite technical expertise.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Nurturing responsible global citizens committed to ethics.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Fostering technology-driven learning environments.</li>
+                    <li><i class="fa-solid fa-circle-chevron-right"></i> Contributing to national development through constant innovation.</li>
+                </ul>
             </div>
         </div>
     </section>
 
+    <!-- 4. Why Choose TJS? -->
+    <section id="why-choose" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Why Choose TJS?</h2>
+            <div class="grid-3">
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-chalkboard-user cluster-icon"></i>
+                    <h4>Experienced Faculty</h4>
+                    <p>Highly qualified and dedicated academic professionals driving engineering breakthroughs.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-flask cluster-icon"></i>
+                    <h4>Modern Laboratories</h4>
+                    <p>Advanced lab architectures outfitted with professional equipment for immersive testing.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-laptop-code cluster-icon"></i>
+                    <h4>Industry Curriculum</h4>
+                    <p>Regularly updated, industry-oriented learning systems built for immediate employability.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-user-shield cluster-icon"></i>
+                    <h4>Placement Training</h4>
+                    <p>Structured training cycles focusing on soft skills, logic aptitude, and technical coding.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-book-open-reader cluster-icon"></i>
+                    <h4>Digital Library</h4>
+                    <p>Vast learning vaults featuring online research databases, e-journals, and full textbook access.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-network-wired cluster-icon"></i>
+                    <h4>Smart Classrooms</h4>
+                    <p>Multimedia classrooms maximizing academic comprehension through advanced visual aids.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Statistics Section -->
+    <section class="section-viewport statistics-bg">
+        <div class="glass-container grid-4">
+            <div class="glass-sheet metric-item">
+                <div class="counter-display" data-target="5000">0</div>
+                <div class="metric-label">Students Enrolled</div>
+            </div>
+            <div class="glass-sheet metric-item">
+                <div class="counter-display" data-target="4500">0</div>
+                <div class="metric-label">Total Placements</div>
+            </div>
+            <div class="glass-sheet metric-item">
+                <div class="counter-display" data-target="87">0</div>
+                <div class="metric-label">Faculty Experts</div>
+            </div>
+            <div class="glass-sheet metric-item">
+                <div class="counter-display" data-target="10">0</div>
+                <div class="metric-label">Academic Programs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Messages (Added Content) -->
+    <section class="section-viewport">
+        <div class="glass-container">
+            <div class="glass-sheet principal-card">
+                <div class="principal-layout">
+                    <img src="../img/principal.jpg" alt="TJS Academic Director" class="principal-img">
+                    <div class="principal-text">
+                        <span class="accent-tag">From the Principal's Desk</span>
+                        <h3>Fostering Professional Competence</h3>
+                        <p>"At TJS, we ensure that students are exposed to robust academic methodologies paired with deep corporate interface realities. Our continuous training tracks produce global leaders equipped with engineering foundations and deep-rooted values."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Departments -->
+    <section id="departments" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Academic Departments</h2>
+            <div class="grid-3">
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-terminal spatial-icon"></i>
+                    <h4>Computer Science Engineering</h4>
+                    <p>Specialization paths in full-stack architecture, network design, systems computing, and core algorithms.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-brain spatial-icon"></i>
+                    <h4>Artificial Intelligence & Data Science</h4>
+                    <p>Focused engineering structures mapping predictive modeling platforms, cloud systems, and algorithmic analysis.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-robot spatial-icon"></i>
+                    <h4>CSE (AI & Machine Learning)</h4>
+                    <p>Deep training environments focused on intelligent cognitive automation, robotic processes, and deep learning neural models.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-globe spatial-icon"></i>
+                    <h4>Information Technology</h4>
+                    <p>Enterprise data management systems, distributed web programming models, cybersecurity parameters, and cloud security frameworks.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-microchip spatial-icon"></i>
+                    <h4>Electronics & Communication</h4>
+                    <p>Core instruction tracking communication arrays, analog system hardware, embedded processing units, and high-performance VLSI designs.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <i class="fa-solid fa-bolt spatial-icon"></i>
+                    <h4>Electrical & Electronics</h4>
+                    <p>Power electronics architectures, renewable grid infrastructures, electrical drive systems, and heavy energy controllers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Facilities -->
+    <section id="facilities" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Campus Facilities</h2>
+            <div class="horizontal-scroll-container">
+                <div class="scroll-card glass-sheet">
+                    <i class="fa-solid fa-book"></i>
+                    <h5>Central Library</h5>
+                    <p>Fully automated cataloging system holding massive collections of global engineering journals and research books.</p>
+                </div>
+                <div class="scroll-card glass-sheet">
+                    <i class="fa-solid fa-hotel"></i>
+                    <h5>Campus Hostels</h5>
+                    <p>Premium, secure accommodation facilities built with spacious layouts and structural high-speed network connections.</p>
+                </div>
+                <div class="scroll-card glass-sheet">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h5>Modern Cafeteria</h5>
+                    <p>Hygiene-vetted food courts serving highly balanced nutritious meals to dynamic groups of students and faculty members.</p>
+                </div>
+                <div class="scroll-card glass-sheet">
+                    <i class="fa-solid fa-bus"></i>
+                    <h5>Transport Fleet</h5>
+                    <p>Extensive network coverage traversing across multiple operational logistics paths within Chennai and Thiruvallur districts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Campus Life -->
+    <section id="campus-life" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Campus Life & Engagement</h2>
+            <div class="grid-3">
+                <div class="glass-sheet card-interactive tilt-target">
+                    <h5>Technical Symposiums</h5>
+                    <p>Yearly inter-collegiate technology challenges enabling students to project software and hardware builds globally.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <h5>NSS Activities</h5>
+                    <p>Structured socio-civic community service units aimed at executing local development projects and health camps.</p>
+                </div>
+                <div class="glass-sheet card-interactive tilt-target">
+                    <h5>Hackathons & Sports</h5>
+                    <p>Vibrant combination of non-stop developer programming iterations alongside active athletic club championships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Placement Section -->
+    <section id="placements" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Corporate Placements Timeline</h2>
+            <div class="timeline-track">
+                <div class="timeline-milestone glass-sheet">
+                    <div class="milestone-marker">Phase 01</div>
+                    <h5>Foundation Training</h5>
+                    <p>Comprehensive aptitude modeling, cognitive reasoning tests, verbal agility mapping, and soft skill updates.</p>
+                </div>
+                <div class="timeline-milestone glass-sheet">
+                    <div class="milestone-marker">Phase 02</div>
+                    <h5>Advanced Engineering Labs</h5>
+                    <p>Intense full-stack coding sprints, framework design architectures, database testing, and technical interview simulations.</p>
+                </div>
+                <div class="timeline-milestone glass-sheet">
+                    <div class="milestone-marker">Phase 03</div>
+                    <h5>Enterprise Recruiter Placement</h5>
+                    <p>Direct placement operations linking qualified candidates with vetted global tech enterprises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Gallery -->
+    <section id="gallery" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Visual Campus Showcase</h2>
+            <div class="gallery-mosaic">
+                <div class="mosaic-tile glass-sheet">
+                    <img src="../img/images.jpg" alt="TJS Infrastructure Campus View" class="mosaic-asset">
+                    <div class="mosaic-banner">Campus Infrastructure at Dusk</div>
+                </div>
+                <div class="mosaic-tile glass-sheet">
+                    <img src="../img/library.avif" alt="TJS Library Facility" class="mosaic-asset">
+                    <div class="mosaic-banner">Digital Information Hub</div>
+                </div>
+                <div class="mosaic-tile glass-sheet">
+                    <img src="../img/campus-day.avif" alt="TJS Main Building Entrance" class="mosaic-asset">
+                    <div class="mosaic-banner">Main Academic Complex</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. News & Events -->
+    <section id="news" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">News & Achievements</h2>
+            <div class="grid-3">
+                <div class="glass-sheet dynamic-news-card">
+                    <span class="news-date">Latest Update</span>
+                    <h5>Campus Recruitment Drive</h5>
+                    <p>Tier-1 multi-national corporations initiate comprehensive placement cycles securing records for final-year students.</p>
+                </div>
+                <div class="glass-sheet dynamic-news-card">
+                    <span class="news-date">Research Alert</span>
+                    <h5>Faculty Certifications</h5>
+                    <p>Core department faculty panels achieve prestigious distinctions in international technical research symposiums.</p>
+                </div>
+                <div class="glass-sheet dynamic-news-card">
+                    <span class="news-date">Innovation News</span>
+                    <h5>National Level Hackathon</h5>
+                    <p>TJS Engineering students secure top ranks in collaborative structural coding challenges focused on AI applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Admissions Info -->
+    <section id="admissions" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Admissions & Enquiries</h2>
+            <div class="grid-dual">
+                <div class="glass-sheet structural-info">
+                    <h4>Counseling Code: 1442</h4>
+                    <p class="margin-bottom-sm">Follow standard Anna University Single Window Admission parameters for direct engineering allocation tracks.</p>
+                    <ul class="clean-list">
+                        <li><strong>Eligibility:</strong> Merit based cut-off matching state higher secondary PCM parameters.</li>
+                        <li><strong>Scholarships:</strong> Distinct fee waiver frameworks structured for academic toppers and sports athletes.</li>
+                    </ul>
+                </div>
+                <div class="glass-sheet contact-form-wrapper">
+                    <form action="#" class="decent-form">
+                        <input type="text" placeholder="Student Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <select required>
+                            <option value="">Select Target Program</option>
+                            <option value="cse">B.E. Computer Science Engineering</option>
+                            <option value="aids">B.Tech AI & Data Science</option>
+                            <option value="ece">B.E. Electronics & Communication</option>
+                        </select>
+                        <button type="submit" class="action-trigger primary-pill submit-btn">Submit Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. Testimonials -->
+    <section id="testimonials" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Institutional Endorsements</h2>
+            <div class="grid-3">
+                <div class="glass-sheet quote-box">
+                    <p>"The systematic training tracking systems enabled me to secure a solid development role right before my final year semesters completed."</p>
+                    <h6>— Alumnus, CSE Class of 2024</h6>
+                </div>
+                <div class="glass-sheet quote-box">
+                    <p>"TJS combines rigorous discipline with modern practical laboratory platforms, making it ideal for technical growth."</p>
+                    <h6>— Corporate Recruiter Panel</h6>
+                </div>
+                <div class="glass-sheet quote-box">
+                    <p>"The campus offers massive safety structures alongside active placement frameworks that provide assurance to families."</p>
+                    <h6>— Proud Parent Profile</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. Contact -->
+    <section id="contact" class="section-viewport">
+        <div class="glass-container">
+            <h2 class="viewport-title">Connect With Us</h2>
+            <div class="grid-dual">
+                <div class="glass-sheet info-map-card">
+                    <h5>T.J.S. Engineering College</h5>
+                    <p><i class="fa-solid fa-location-arrow"></i> T.J.S. Nagar, Peruvoyal, Near Kavaraipettai, Gummidipoondi Taluk, Thiruvallur District, Tamil Nadu - 601206.</p>
+                    <p><i class="fa-solid fa-phone"></i> +91 44 2792 5196 | +91 2792 5197</p>
+                    <p><i class="fa-solid fa-envelope"></i> admission@tjsec.in | info@tjsec.in</p>
+                </div>
+                <div class="glass-sheet interactive-map-placeholder">
+                    <!-- Standard Embedded Map Layout Box Container -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.7925555437996!2d80.12521941482755!3d13.363194390599557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1m3!1s0x3a527fa2f3333333%3A0x6a0c0bfa15c6d328!2sTJS%20Engineering%20College!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0; border-radius:12px; min-height: 250px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layout Footer Logic -->
+    <footer class="corporate-footer">
+        <p>© 2026 T.J.S. Engineering College. All Institutional Rights Reserved. | Created for Full-Stack Development Exhibition Portfolio.</p>
+    </footer>
+
+    <!-- Javascript Animation Engines -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="../JS/script.js"></script>
 </body>
 </html>

@@ -1,102 +1,112 @@
-/* script.js */
-document.addEventListener("DOMContentLoaded", () => {
+// ============================================================================
+// 1. WEBGL ENGINE INITIALIZATION & PARTICLE CONFIGURATIONS
+// ============================================================================
+const spatialCanvas = document.getElementById('spatial-canvas');
+const systemScene = new THREE.Scene();
+const mainCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+const webglRenderer = new THREE.WebGLRenderer({ canvas: spatialCanvas, antialias: true, alpha: true });
+
+webglRenderer.setSize(window.innerWidth, window.innerHeight);
+webglRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+const particleGeometry = new THREE.BufferGeometry();
+const particlePopulation = 1400; 
+const positionMatrix = new Float32Array(particlePopulation * 3);
+
+for(let i = 0; i < particlePopulation * 3; i++) {
+    positionMatrix[i] = (Math.random() - 0.5) * 12;
+}
+particleGeometry.setAttribute('position', new THREE.BufferAttribute(positionMatrix, 3));
+
+const designMaterial = new THREE.PointsMaterial({
+    size: 0.007,
+    color: 0xd4af37, // Matching the Academic Gold Accent Palette
+    transparent: true,
+    opacity: 0.4,
+    blending: THREE.AdditiveBlending
+});
+
+const spatialPointsMesh = new THREE.Points(particleGeometry, designMaterial);
+systemScene.add(spatialPointsMesh);
+mainCamera.position.z = 4;
+
+let cursorX = 0, cursorY = 0;
+window.addEventListener('mousemove', (event) => {
+    cursorX = (event.clientX / window.innerWidth) - 0.5;
+    cursorY = (event.clientY / window.innerHeight) - 0.5;
+
+    const activeLight = document.getElementById('cursor-light');
+    activeLight.style.transform = `translate3d(calc(${event.clientX}px - 50%), calc(${event.clientY}px - 50%), 0)`;
+});
+
+const activeClock = new THREE.Clock();
+const renderExecutionLoop = () => {
+    const timeDelta = activeClock.getElapsedTime();
+    spatialPointsMesh.rotation.y = timeDelta * 0.02;
     
-    // 1. Dynamic Smooth Custom Cursor
-    const cursor = document.querySelector(".custom-cursor");
-    
-    document.addEventListener("mousemove", (e) => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
+    spatialPointsMesh.rotation.x += (-cursorY * 0.15 - spatialPointsMesh.rotation.x) * 0.05;
+    spatialPointsMesh.rotation.y += (cursorX * 0.15 - spatialPointsMesh.rotation.y) * 0.05;
+
+    webglRenderer.render(systemScene, mainCamera);
+    window.requestAnimationFrame(renderExecutionLoop);
+};
+renderExecutionLoop();
+
+window.addEventListener('resize', () => {
+    mainCamera.aspect = window.innerWidth / window.innerHeight;
+    mainCamera.updateProjectionMatrix();
+    webglRenderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ============================================================================
+// 2. ELEMENT TILT PARAMETERS
+// ============================================================================
+const structuralCards = document.querySelectorAll('.tilt-target');
+structuralCards.forEach(targetCard => {
+    targetCard.addEventListener('mousemove', (event) => {
+        const boundingBoxes = targetCard.getBoundingClientRect();
+        const absoluteX = event.clientX - boundingBoxes.left;
+        const absoluteY = event.clientY - boundingBoxes.top;
+
+        const vectorOrientationX = ((absoluteY / boundingBoxes.height) - 0.5) * -8;
+        const vectorOrientationY = ((absoluteX / boundingBoxes.width) - 0.5) * 8;
+
+        targetCard.style.transform = `rotateX(${vectorOrientationX}deg) rotateY(${vectorOrientationY}deg) scale(1.01)`;
     });
 
-    // Handle cursor scale variations on interactive element hovers
-    const interactiveElements = document.querySelectorAll("a, button, .academic-card, .floating-card");
-    interactiveElements.forEach(el => {
-        el.addEventListener("mouseenter", () => cursor.classList.add("hovered"));
-        el.addEventListener("mouseleave", () => cursor.classList.remove("hovered"));
+    targetCard.addEventListener('mouseleave', () => {
+        targetCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
     });
+});
 
-    // 2. Translucent Navigation Bar Blur Effect on Scroll
-    const navbar = document.querySelector(".navbar");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
+// ============================================================================
+// 3. STATISTICAL INCREMENT COMPUTATIONS
+// ============================================================================
+const computationalCounters = document.querySelectorAll('.counter-display');
+const observerOptions = { threshold: 0.7 };
+
+const analyticalObserver = new IntersectionObserver((monitoredElements, engineSelf) => {
+    monitoredElements.forEach(activeEntry => {
+        if(activeEntry.isIntersecting) {
+            const rawNode = activeEntry.target;
+            const numericLimit = parseInt(rawNode.getAttribute('data-target'), 10);
+            let structuralStart = 0;
+            const computationalSteps = 100;
+            const mathematicalIncrement = numericLimit / computationalSteps;
+
+            const calculationCycle = () => {
+                structuralStart += mathematicalIncrement;
+                if(structuralStart < numericLimit) {
+                    rawNode.innerText = Math.floor(structuralStart).toLocaleString() + "+";
+                    requestAnimationFrame(calculationCycle);
+                } else {
+                    rawNode.innerText = numericLimit.toLocaleString() + "+";
+                }
+            };
+            calculationCycle();
+            engineSelf.unobserve(rawNode);
         }
     });
+}, observerOptions);
 
-    // 3. Hero Interactive Cards: 3D Parallax Tilt Effect on Mouse Move
-    const cards = document.querySelectorAll(".floating-card");
-    cards.forEach(card => {
-        card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - (rect.width / 2);
-            const y = e.clientY - rect.top - (rect.height / 2);
-            
-            // Calculate rotational intensity degrees
-            const rotateX = -(y / rect.height) * 20; 
-            const rotateY = (x / rect.width) * 20;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-        });
-
-        card.addEventListener("mouseleave", () => {
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
-        });
-    });
-
-    // 4. Academic Cards: Mouse Spotlight Glow Coordinates Tracking
-    const academicCards = document.querySelectorAll(".academic-card");
-    academicCards.forEach(card => {
-        card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty("--mouse-x", `${x}px`);
-            card.style.setProperty("--mouse-y", `${y}px`);
-        });
-    });
-
-    // 5. Scroll Reveals: Intersection Observer Pipeline
-    const revealElements = document.querySelectorAll(".scroll-reveal");
-    
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                
-                // If it contains a numeric counter, kick off the step calculation function
-                const counterElement = entry.target.querySelector(".counter");
-                if (counterElement) {
-                    runCounter(counterElement);
-                }
-                observer.unobserve(entry.target); // Kill tracking once fired
-            }
-        });
-    }, { threshold: 0.15 });
-
-    revealElements.forEach(element => revealObserver.observe(element));
-
-    // 6. Impact Metric Numerical Counters Progression Engine
-    function runCounter(el) {
-        const target = parseInt(el.getAttribute("data-target"));
-        const duration = 2000; // Complete within 2 seconds
-        const stepTime = Math.max(Math.floor(duration / target), 15);
-        let start = 0;
-        
-        // Calculate dynamic increments for high-order values
-        const increment = target > 1000 ? Math.ceil(target / 100) : 1;
-
-        const timer = setInterval(() => {
-            start += increment;
-            if (start >= target) {
-                el.innerText = target.toLocaleString() + "+";
-                clearInterval(timer);
-            } else {
-                el.innerText = start.toLocaleString();
-            }
-        }, stepTime);
-    }
-});
+computationalCounters.forEach(targetNode => analyticalObserver.observe(targetNode));
